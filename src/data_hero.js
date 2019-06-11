@@ -1,6 +1,6 @@
 
 let data = {};
-data = getUniverse([dcData, marvelData]);
+// data = getUniverse([dcData, marvelData]);
 // data = getUniverse([dcData.slice(0,50)]);
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     .attr("width", width)
     .attr("height", height)
     .append("g")
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    .attr("transform", `translate(${width / 2},${width / 2})`);
 
   // d3.partition() helps us organize data for sunbursts
   const partition = d3.partition()
@@ -41,10 +41,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
     .outerRadius(function (d) { return d.y1 });
 
   // we have root.descendants() after we ran d3.hiearchy
-  g.selectAll("g")
+  g.selectAll("path")
     .data(root.descendants().filter(d => d.depth))
-    .enter().append('g').attr("class", "nodeLabel")
-    .append('path')
+    .enter().append("path")
     .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
     .attr("d", arc)
     .style('stroke', '#fff')
@@ -58,5 +57,4 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
       }
     );
-  
 });
