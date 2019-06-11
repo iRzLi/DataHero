@@ -33,5 +33,5 @@ This data is from [fivethirtyeight](https://github.com/fivethirtyeight/data/tree
 ## Technologies
 
 - `Javascript`
-- `Chart.js`
+- `d3js`
 - `Webpack`

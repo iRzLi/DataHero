@@ -1,4 +1,4 @@
-const dc = [
+const dcData = [
     {
       "page_id": 1422,
       "name": "Batman (Bruce Wayne)",
