@@ -5,21 +5,32 @@ const getUniverse = (dataArr) => {
         children: [],
     };
     rootData.children.push({
-        name: "DC Universe",
+        name: "DC",
         // value: dataArr[0].length,
+        type: "Universe",
         children:[],
     });
     rootData.children.push({
-        name: "Marvel Universe",
+        name: "Marvel",
         // value: dataArr[1].length,
+        type: "Universe",
         children: [],
     });
+
+
+    const rootData2 = {
+        name: "Characters",
+        children: [],
+    }
+
     for (let i = 0; i < rootData.children.length; i++) {
-        if(dataArr[i]){
+        if(dataArr[i].length){
             rootData.children[i].children = getSex(dataArr, i);
+            rootData2.children.push(rootData.children[i]);
         }
     }
-    return rootData
+    // debugger
+    return rootData;
 };
 
 const getSex = (dataArr, index) => {
@@ -58,9 +69,13 @@ const getSex = (dataArr, index) => {
         // value: newDataArr[2].length,
         children: [],
     })
+
+    const sexData2 = [];
+
     for (let i = 0; i < sexData.length; i++) {
-        if(newDataArr[i]){
+        if(newDataArr[i].length){
             sexData[i].children = getAlignment(newDataArr, i)
+            sexData2.push(sexData[i]);
         }
     }
     return sexData;
@@ -102,9 +117,13 @@ const getAlignment = (dataArr, index)=>{
         // value: newDataArr[3].length,
         children: [],
     });
+
+    const alignmentData2 = []
+
     for (let i = 0; i < alignmentData.length; i++) {
-        if(newDataArr[i]){
+        if(newDataArr[i].length){
             alignmentData[i].children = getStatus(newDataArr, i)
+            alignmentData2.push(alignmentData[i]);
         }
     }
     return alignmentData;
@@ -139,9 +158,13 @@ const getStatus = (dataArr, index) => {
         // value: newDataArr[2].length,
         children: [],
     });
+
+    const statusData2 = [];
+
     for (let i = 0; i < statusData.length; i++) {
-        if(newDataArr[i]){
+        if(newDataArr[i].length){
             statusData[i].children = getYear(newDataArr, i);
+            statusData2.push(statusData[i]);
         }
     }
     return statusData;
@@ -172,12 +195,14 @@ const getYear = (dataArr, index) => {
         yearData.push({
             name: y,
             // value: deepArr.length,
+            type:"year",
             children: [],
         })
     });
 
 
     // "" isn't part of the unique yers arr
+    // get array of all undefined years
     deepArr = dataArr[index].filter(c=>{
         if(!c.YEAR) {
             return c;
@@ -188,12 +213,15 @@ const getYear = (dataArr, index) => {
     yearData.push({
         name:"Unknown Year",
         // value: deepArr.length,
+        type: "year",
         children: [],
     });
 
+    const yearData2 = [];
     for (let i = 0; i < yearData.length; i++) {
-        if(newDataArr[i]){
+        if(newDataArr[i].length){
             yearData[i].children = getName(newDataArr, i);
+            yearData2.push(yearData[i]);
         }
     }
     return yearData;
@@ -208,5 +236,6 @@ const getName = (dataArr,index)=>{
             type: "name",
         })
     });
+
     return nameData;
 }
