@@ -80,6 +80,9 @@ const draw = (filterObj) => {
 
 
     // we have root.descendants() after we ran d3.hiearchy
+
+            // .data(root.descendants().filter(d => d.depth))
+
     g.selectAll("g")
         .data(root.descendants().filter(d => d.depth))
         .enter().append("path")

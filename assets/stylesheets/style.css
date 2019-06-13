@@ -1,27 +1,57 @@
 body {
-    font-family: 'Bree Serif', serif;
+    font-family: 'Bree Serif', sans-serif;
     position: relative;
+    min-width: 950px;
+    max-width: 950px;
+    color: #bebad9;
 }
 
 .selectors {
+    width: 100%;
     display: flex;
     flex-direction: column;
     position: absolute;
-    z-index: 1;
+    align-items: flex-end;
 }
 
 .options {
     display: flex;
     flex-direction: column;
     width: 100px;
+    margin-right: 30px;
 }
 
 .select {
     margin: 10px;
+    width: 90px;
+    cursor: pointer;
+    position: relative;
+    
 }
+
+.select select {
+    position: absolute;
+    z-index: 1;
+}
+
+/* 
+.select:hover{
+    background-color: #82838a;
+    border: 1px solid #000000;
+    color: #ffffff;
+} */
 
 .svg {
     position: absolute;
-    top: 25px;
-    left: 25px;
+    left: 40px;
+    top: 20px;
+}
+
+.logo{
+    position: absolute;
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 14px;
+    left:368px;
+    top:378px;
 }
