@@ -4,6 +4,7 @@ const height = 800;
 const radius = Math.min(width, height) / 2;
 const color = d3.scaleOrdinal(d3.schemeSet3);
 const format = d3.format(",d")
+let g = null;
 
 // d3.partition() helps us organize data for sunbursts
 const partition = d3.partition()
@@ -35,7 +36,7 @@ const draw = (filterObj) => {
         .sum(function (d) { return d.value }) 
         .sort((a, b) => b.value - a.value);
 
-    // partition(root);
+    partition(root);
 
     // debugger;
     
@@ -71,15 +72,15 @@ const draw = (filterObj) => {
     
     // get svg tag from within body
     // creates g tag within the svg
-    const g = d3.select("svg")
+    g = d3.select("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g") 
-        .attr("transform", `translate(${width / 2},${width / 2})`)
+        .attr("transform", `translate(${width / 2},${width / 2})`);
 
 
     // we have root.descendants() after we ran d3.hiearchy
-    g.selectAll("path")
+    g.selectAll("g")
         .data(root.descendants().filter(d => d.depth))
         .enter().append("path")
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
@@ -105,6 +106,7 @@ const draw = (filterObj) => {
         filterObj.alterFilter(this.name, this.value);
         updateChart();
     });
+
 }
 
 const updateChart = () => {
@@ -115,31 +117,27 @@ const updateChart = () => {
 
     partition(newroot);
 
-
-    // const newDoughnut = d3.select("svg").select("g").selectAll("path")
-    const newDoughnut = d3.selectAll("path")
+    const newDoughnut = g.selectAll("g")   
         .data(newroot.descendants().filter(d => d.depth));
 
+    // newDoughnut.exit().remove();
     
-    // newDoughnut.remove();
-    newDoughnut.exit().remove();
+    newDoughnut.selectAll('path').remove();
 
-    
-
-    newDoughnut.enter().append("path")
-    .merge(newDoughnut)
-    .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
-    .attr("d", arc)
-    .style('stroke', '#FFFFFF')
-    .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
-    .append("title")
-    .text(d => {
+    newDoughnut.enter().merge(newDoughnut).append("path")
+        .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
+        .attr("d", arc)
+        .style('stroke', '#FFFFFF')
+        .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
+        .append("title")
+        .text(d => {
             if (d.data.type === "name") {
-                    return `${d.ancestors().map(d => d.data.name).reverse().join("/")}`;
-                } else {
-            return `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`;
-        }
-    });
-
+                debugger
+                // let labelStr = 
+                return `${d.ancestors().map(d => d.data.name).reverse().join("/")}`;
+            } else {
+                return `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`;
+            }
+        });
     newDoughnut.transition().duration(500).attr("d", arc);
 }

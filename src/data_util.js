@@ -5,18 +5,17 @@ const getUniverse = (dataArr) => {
         children: [],
     };
     rootData.children.push({
-        name: "Marvel",
-        // value: dataArr[1].length,
-        type: "Universe",
-        children: [],
-    });
-    rootData.children.push({
         name: "DC",
         // value: dataArr[0].length,
         type: "Universe",
         children:[],
     });
-    
+    rootData.children.push({
+        name: "Marvel",
+        // value: dataArr[1].length,
+        type: "Universe",
+        children: [],
+    });
 
 
     const rootData2 = {
