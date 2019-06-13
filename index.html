@@ -4,6 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./assets/stylesheets/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
+
+
     <script src="./lib/d3.min.js"></script>
     <script src="./assets/data/dc-characters.js"></script>
     <script src="./assets/data/marvel-characters.js"></script>
@@ -22,38 +26,43 @@
   </head>
   <body>
     <div>
-    <section>
+    <section class="selectors">
       <div>
         <label><input class="universe" type="radio" name="universe" value="both" checked /> Both Universes</label>
         <label><input class="universe"  type="radio" name="universe" value="dc" /> DC Universe</label>
         <label><input class="universe"  type="radio" name="universe" value="marvel" /> Marvel Universe</label>
       </div>
+      <div class="options">
+        <div>
+        <span>Sex: </span>
       <select class="select" name="SEX">
         <option value="all">Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
         <option value="unknown">?? Sex</option>
       </select>
-
+</div>
+<div><span>Alignment:</span>
       <select class="select" name="ALIGN">
         <option value="all">Alignment</option>
         <option value="good">Good</option>
         <option value="evil">Bad</option>
         <option value="neutral">Neutral</option>
         <option value="unknown">?? Alignment</option>
-      </select>
-
+      </select></div>
+<div>
+  <span>Status:</span>
       <select class="select" name="ALIVE">
         <option value="all">Status</option>
         <option value="living">Living</option>
         <option value="deceased">Deceased</option>
-        <option value="unknown">?? Status</option>
-      </select>
-
+        <!-- <option value="unknown">?? Status</option> -->
+      </select></div>
+      </div>
 
     </section>
 
-      <svg></svg>
+      <svg class="svg"></svg>
     </div>
 
 

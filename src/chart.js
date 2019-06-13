@@ -90,9 +90,12 @@ const draw = (filterObj) => {
         .append("title")
         .text(d => {
             if (d.data.type === "name") {
-                return `${d.ancestors().map(d => d.data.name).reverse().join("/")}`;
+                let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
+                let name = labelString[labelString.length - 1];
+                return `${labelString.slice(1, labelString.length - 1).join("/")}\n${name} `;
             } else {
-                return `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`;
+                let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
+                return `${labelString.slice(1).join("/")}\n${format(d.value)} Character(s)`;
             }
         });
 
@@ -132,11 +135,14 @@ const updateChart = () => {
         .append("title")
         .text(d => {
             if (d.data.type === "name") {
-                debugger
-                // let labelStr = 
-                return `${d.ancestors().map(d => d.data.name).reverse().join("/")}`;
+                let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
+                let name = labelString[labelString.length-1];
+                return `${labelString.slice(1, labelString.length - 1).join("/")}\n${name} `;
+
+                // return `${d.ancestors().map(d => d.data.name).reverse().join("/")}`;
             } else {
-                return `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`;
+                let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
+                return `${labelString.slice(1).join("/")}\n${format(d.value)} Character(s)`;
             }
         });
     newDoughnut.transition().duration(500).attr("d", arc);
