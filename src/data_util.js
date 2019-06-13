@@ -5,17 +5,18 @@ const getUniverse = (dataArr) => {
         children: [],
     };
     rootData.children.push({
-        name: "DC",
-        // value: dataArr[0].length,
-        type: "Universe",
-        children:[],
-    });
-    rootData.children.push({
         name: "Marvel",
         // value: dataArr[1].length,
         type: "Universe",
         children: [],
     });
+    rootData.children.push({
+        name: "DC",
+        // value: dataArr[0].length,
+        type: "Universe",
+        children:[],
+    });
+    
 
 
     const rootData2 = {
@@ -30,7 +31,7 @@ const getUniverse = (dataArr) => {
         }
     }
     // debugger
-    return rootData;
+    return rootData2;
 };
 
 const getSex = (dataArr, index) => {
@@ -78,7 +79,7 @@ const getSex = (dataArr, index) => {
             sexData2.push(sexData[i]);
         }
     }
-    return sexData;
+    return sexData2;
 };
 
 const getAlignment = (dataArr, index)=>{
@@ -126,7 +127,7 @@ const getAlignment = (dataArr, index)=>{
             alignmentData2.push(alignmentData[i]);
         }
     }
-    return alignmentData;
+    return alignmentData2;
 
 }
 
@@ -167,7 +168,7 @@ const getStatus = (dataArr, index) => {
             statusData2.push(statusData[i]);
         }
     }
-    return statusData;
+    return statusData2;
 
 };
 
@@ -224,7 +225,7 @@ const getYear = (dataArr, index) => {
             yearData2.push(yearData[i]);
         }
     }
-    return yearData;
+    return yearData2;
 }
 
 const getName = (dataArr,index)=>{

@@ -9,6 +9,7 @@ const format = d3.format(",d")
 const partition = d3.partition()
     .size([2 * Math.PI, radius]);
 
+// const partitionLayout = d3.partition();
 
 
 
@@ -29,12 +30,15 @@ const draw = (filterObj) => {
 
     // d3.hiearchy converts our node like obj into d3 hiearchy object
     // sum goes through each node and sums it up
+
     let root = d3.hierarchy(data)
-        .sum(function (d) { return d.value })
+        .sum(function (d) { return d.value }) 
         .sort((a, b) => b.value - a.value);
 
+    // partition(root);
 
-
+    // debugger;
+    
     partition(root);
 
     // legend
@@ -70,7 +74,7 @@ const draw = (filterObj) => {
     const g = d3.select("svg")
         .attr("width", width)
         .attr("height", height)
-        .append("g")
+        .append("g") 
         .attr("transform", `translate(${width / 2},${width / 2})`)
 
 
@@ -96,6 +100,11 @@ const draw = (filterObj) => {
         filterObj.chooseUniverse(this.value);
         updateChart();
     });
+
+    d3.selectAll(".select").on("change", function(d,i){
+        filterObj.alterFilter(this.name, this.value);
+        updateChart();
+    });
 }
 
 const updateChart = () => {
@@ -106,38 +115,31 @@ const updateChart = () => {
 
     partition(newroot);
 
-    // const newDoughnut = d3.selectAll("path")
-    const newDoughnut = d3.select("svg").select("g").selectAll("path")
+
+    // const newDoughnut = d3.select("svg").select("g").selectAll("path")
+    const newDoughnut = d3.selectAll("path")
         .data(newroot.descendants().filter(d => d.depth));
 
-    // debugger
-
-    // newDoughnut.remove();
     
-    Object.keys(newDoughnut.exit()._groups[0]).forEach((data)=>{
-        let temp = newDoughnut.exit()._groups[0][data].__data__;
-        if(temp.depth!==6){
-            debugger;
-        }
-    })
+    // newDoughnut.remove();
+    newDoughnut.exit().remove();
 
-    // This doesn't work because select checks it by length of the array
+    
 
     newDoughnut.enter().append("path")
-        .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
-        .attr("d", arc)
-        .style('stroke', '#FFFFFF')
-        .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
-        .append("title")
-        .text(d => {
+    .merge(newDoughnut)
+    .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
+    .attr("d", arc)
+    .style('stroke', '#FFFFFF')
+    .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
+    .append("title")
+    .text(d => {
             if (d.data.type === "name") {
-                return `${d.ancestors().map(d => d.data.name).reverse().join("/")}`;
-            } else {
-                return `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`;
-            }
-        });
+                    return `${d.ancestors().map(d => d.data.name).reverse().join("/")}`;
+                } else {
+            return `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`;
+        }
+    });
 
-    newDoughnut.exit().remove();
-    newDoughnut.transition().duration(500);
-
+    newDoughnut.transition().duration(500).attr("d", arc);
 }
