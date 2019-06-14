@@ -66,6 +66,12 @@ const draw = (filterObj) => {
         });
 
 
+    
+    g.selectAll("path").append("text").attr("dy", ".35em")
+        .text(function (d) { return d.parent ? d.data.name : ""; })
+        .attr("id", function (d) { return "w" + d.data.name; });
+
+
     d3.selectAll(".universe").on("change", function(d,i) {
         filterObj.chooseUniverse(this.value);
         updateChart();
@@ -112,6 +118,8 @@ const updateChart = () => {
                 return `${labelString.slice(1).join("/")}\n${format(d.value)} Character(s)`;
             }
         });
+
+    
 
     newDoughnut.selectAll("path").transition().duration(500).attr("d", arc);
 }
