@@ -68,7 +68,7 @@ const draw = (filterObj) => {
         });
 
 
-    d3.selectAll(".universe").on("click", function(d,i) {
+    d3.selectAll(".universe").on("change", function(d,i) {
         // filterHash.universe = this.value;
         filterObj.chooseUniverse(this.value);
         updateChart();

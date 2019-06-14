@@ -20,12 +20,12 @@ marvelData.forEach(character => {
 
 const filterObj = new filter(customDCData, customMarvelData);
 
-const filterHash = { 
-  universe: "both",
-  SEX: "all", 
-  ALIGN: "all", 
-  ALIVE: "all" 
-};
+// const filterHash = { 
+//   universe: "both",
+//   SEX: "all", 
+//   ALIGN: "all", 
+//   ALIVE: "all" 
+// };
 
 document.addEventListener("DOMContentLoaded", ()=>{
   draw(filterObj);
