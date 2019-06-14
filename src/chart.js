@@ -29,6 +29,8 @@ const draw = (filterObj) => {
 
     const data = getUniverse(filterObj.getData());
 
+    // const data = getData(customDCData, customMarvelData, filterHash);
+
     // d3.hiearchy converts our node like obj into d3 hiearchy object
     // sum goes through each node and sums it up
 
@@ -38,50 +40,13 @@ const draw = (filterObj) => {
 
     partition(root);
 
-    // debugger;
-    
-    partition(root);
 
-    // legend
-
-    // const names = [];
-
-    // function getNames(node) {
-    //     if (node.children) {
-    //         if(node.data.type!=="year"){
-    //             names.push(node.data.name);
-    //         }
-    //         node.children.forEach(function (childNode) { getNames(childNode); });
-    //     }
-    // }
-
-    // getNames(root);
-
-    // function getuniqueNames(namesArr){
-    //     const uNames = []
-    //     namesArr.forEach((name, i) => {
-    //         if(namesArr.indexOf(name) === i){
-    //             uNames.push(name);
-    //         }
-    //     });
-    //     return uNames;
-    // }
-
-    // const uNames = getuniqueNames(names);
-
-    
-    // get svg tag from within body
-    // creates g tag within the svg
     g = d3.select("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g") 
         .attr("transform", `translate(${width / 2},${width / 2})`);
 
-
-    // we have root.descendants() after we ran d3.hiearchy
-
-            // .data(root.descendants().filter(d => d.depth))
 
     g.selectAll("g")
         .data(root.descendants().filter(d => d.depth))
@@ -103,12 +68,14 @@ const draw = (filterObj) => {
         });
 
 
-    d3.selectAll(".universe").on("click", function(d,i) {
+    d3.selectAll(".universe").on("change", function(d,i) {
+        // filterHash.universe = this.value;
         filterObj.chooseUniverse(this.value);
         updateChart();
     });
 
     d3.selectAll(".select").on("change", function(d,i){
+        // filterHash[this.name] = this.value;
         filterObj.alterFilter(this.name, this.value);
         updateChart();
     });
@@ -116,9 +83,14 @@ const draw = (filterObj) => {
 }
 
 const updateChart = () => {
+
     let newroot = d3.hierarchy(getUniverse(filterObj.getData()))
         .sum(function (d) { return d.value })
         .sort((a, b) => b.value - a.value);
+
+    // let newroot = d3.hierarchy(getData(customDCData, customMarvelData, filterHash))
+    //     .sum(function (d) { return d.value })
+    //     .sort((a, b) => b.value - a.value);
 
 
     partition(newroot);
@@ -141,12 +113,11 @@ const updateChart = () => {
                 let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
                 let name = labelString[labelString.length-1];
                 return `${labelString.slice(1, labelString.length - 1).join("/")}\n${name} `;
-
-                // return `${d.ancestors().map(d => d.data.name).reverse().join("/")}`;
             } else {
                 let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
                 return `${labelString.slice(1).join("/")}\n${format(d.value)} Character(s)`;
             }
         });
-    newDoughnut.transition().duration(500).attr("d", arc);
+
+    newDoughnut.selectAll("path").transition().duration(500).attr("d", arc);
 }
