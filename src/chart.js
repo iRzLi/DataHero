@@ -29,8 +29,6 @@ const draw = (filterObj) => {
 
     const data = getUniverse(filterObj.getData());
 
-    // const data = getData(customDCData, customMarvelData, filterHash);
-
     // d3.hiearchy converts our node like obj into d3 hiearchy object
     // sum goes through each node and sums it up
 
@@ -69,13 +67,11 @@ const draw = (filterObj) => {
 
 
     d3.selectAll(".universe").on("change", function(d,i) {
-        // filterHash.universe = this.value;
         filterObj.chooseUniverse(this.value);
         updateChart();
     });
 
     d3.selectAll(".select").on("change", function(d,i){
-        // filterHash[this.name] = this.value;
         filterObj.alterFilter(this.name, this.value);
         updateChart();
     });
@@ -88,10 +84,6 @@ const updateChart = () => {
         .sum(function (d) { return d.value })
         .sort((a, b) => b.value - a.value);
 
-    // let newroot = d3.hierarchy(getData(customDCData, customMarvelData, filterHash))
-    //     .sum(function (d) { return d.value })
-    //     .sort((a, b) => b.value - a.value);
-
 
     partition(newroot);
 
@@ -103,9 +95,6 @@ const updateChart = () => {
 
     newDoughnut.exit().remove();
     d3.selectAll('path').remove();
-
-
-    // newDoughnut.enter().merge(newDoughnut).append("path")
 
     newDoughnut.enter().merge(newDoughnut).append("path")
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
