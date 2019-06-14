@@ -126,9 +126,9 @@ const updateChart = () => {
     const newDoughnut = g.selectAll("g")   
         .data(newroot.descendants().filter(d => d.depth));
 
-    // newDoughnut.exit().remove();
+    newDoughnut.exit().remove();
     
-    newDoughnut.selectAll('path').remove();
+    d3.selectAll('path').remove();
 
     newDoughnut.enter().merge(newDoughnut).append("path")
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
