@@ -24,7 +24,6 @@ const arc = d3.arc()
 
 
 
-
 const draw = (filterObj) => {
 
     // const data = getUniverse(filterObj.getData());
@@ -48,7 +47,7 @@ const draw = (filterObj) => {
         .attr("transform", `translate(${width / 2},${width / 2})`);
 
 
-    g.selectAll("g")
+    g.selectAll("path")
         .data(root.descendants().filter(d => d.depth))
         .enter().append("path")
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
@@ -76,17 +75,13 @@ const draw = (filterObj) => {
 
     d3.selectAll(".select").on("change", function(d,i){
         filterHash[this.name] = this.value;
-        // filterObj.alterFilter(this.name, this.value);
+        filterObj.alterFilter(this.name, this.value);
         updateChart();
     });
 
 }
 
 const updateChart = () => {
-
-    // let newroot = d3.hierarchy(getUniverse(filterObj.getData()))
-    //     .sum(function (d) { return d.value })
-    //     .sort((a, b) => b.value - a.value);
 
     let newroot = d3.hierarchy(getData(customDCData, customMarvelData, filterHash))
         .sum(function (d) { return d.value })
@@ -95,16 +90,18 @@ const updateChart = () => {
 
     partition(newroot);
 
-    const newDoughnut = g.selectAll("g")   
+    const newDoughnut = g.selectAll("path")
         .data(newroot.descendants().filter(d => d.depth));
 
-    newDoughnut.exit().remove();
-    d3.selectAll('path').remove();
 
-    newDoughnut.enter().merge(newDoughnut).append("path")
+    newDoughnut.exit().remove();
+
+    d3.selectAll("title").remove();
+
+
+    d3.selectAll("path").enter().merge(newDoughnut)
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
         .attr("d", arc)
-        .style('stroke', '#FFFFFF')
         .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
         .append("title")
         .text(d => {
@@ -118,5 +115,16 @@ const updateChart = () => {
             }
         });
 
-    newDoughnut.selectAll("path").transition().duration(500).attr("d", arc);
+
+    d3.selectAll("path")
+        .transition()
+        .duration(1000)
+        .attrTween("d", function(d){
+            const interpolate =  d3.interpolate(d.x0,d.x1);
+            function tween(t) {
+                d.x1 = interpolate(t);
+                return arc(d);
+            }
+            return tween; 
+        });
 }

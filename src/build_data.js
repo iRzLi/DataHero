@@ -1,6 +1,5 @@
 const getData = (dcJson, marvelJson, filterHashObj) => {
 
-
     let rootData = {
         name: "Characters",
         children: [],
@@ -80,6 +79,7 @@ const getSexValue = (dataArr, hasValue, filterHashObj) => {
         sexData[0].children = getAlignData(newDataArr[0], false, filterHashObj);
     }
 
+
     if (hasValue &&
         (filterHashObj.SEX === "all" ||
             filterHashObj.SEX === "female")) {
@@ -97,7 +97,6 @@ const getSexValue = (dataArr, hasValue, filterHashObj) => {
     else {
         sexData[2].children = getAlignData(newDataArr[2], false, filterHashObj);
     }
-
 
     return sexData;
 }
