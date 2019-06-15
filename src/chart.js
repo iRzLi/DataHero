@@ -24,11 +24,15 @@ const arc = d3.arc()
 
 
 
-
 const draw = (filterObj) => {
 
-    const data = getUniverse(filterObj.getData());
+    // const data = getUniverse(filterObj.getData());
 
+<<<<<<< HEAD
+=======
+    const data = getData(customDCData, customMarvelData, filterHash);
+
+>>>>>>> test-val0
     // d3.hiearchy converts our node like obj into d3 hiearchy object
     // sum goes through each node and sums it up
 
@@ -46,7 +50,7 @@ const draw = (filterObj) => {
         .attr("transform", `translate(${width / 2},${width / 2})`);
 
 
-    g.selectAll("g")
+    g.selectAll("path")
         .data(root.descendants().filter(d => d.depth))
         .enter().append("path")
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
@@ -73,11 +77,20 @@ const draw = (filterObj) => {
 
 
     d3.selectAll(".universe").on("change", function(d,i) {
+<<<<<<< HEAD
         filterObj.chooseUniverse(this.value);
+=======
+        filterHash.universe = this.value;
+        // filterObj.chooseUniverse(this.value);
+>>>>>>> test-val0
         updateChart();
     });
 
     d3.selectAll(".select").on("change", function(d,i){
+<<<<<<< HEAD
+=======
+        filterHash[this.name] = this.value;
+>>>>>>> test-val0
         filterObj.alterFilter(this.name, this.value);
         updateChart();
     });
@@ -86,26 +99,29 @@ const draw = (filterObj) => {
 
 const updateChart = () => {
 
-    let newroot = d3.hierarchy(getUniverse(filterObj.getData()))
+    let newroot = d3.hierarchy(getData(customDCData, customMarvelData, filterHash))
         .sum(function (d) { return d.value })
         .sort((a, b) => b.value - a.value);
 
 
     partition(newroot);
 
-    const newDoughnut = g.selectAll("g")   
+    const newDoughnut = g.selectAll("path")
         .data(newroot.descendants().filter(d => d.depth));
 
-    // const newDoughnut = d3.selectAll("path")
-    //     .data(newroot.descendants().filter(d => d.depth));
 
     newDoughnut.exit().remove();
-    d3.selectAll('path').remove();
 
+<<<<<<< HEAD
     newDoughnut.enter().merge(newDoughnut).append("path")
+=======
+    d3.selectAll("title").remove();
+
+
+    d3.selectAll("path").enter().merge(newDoughnut)
+>>>>>>> test-val0
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
         .attr("d", arc)
-        .style('stroke', '#FFFFFF')
         .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
         .append("title")
         .text(d => {
@@ -119,7 +135,22 @@ const updateChart = () => {
             }
         });
 
+<<<<<<< HEAD
     
 
     newDoughnut.selectAll("path").transition().duration(500).attr("d", arc);
+=======
+
+    d3.selectAll("path")
+        .transition()
+        .duration(1000)
+        .attrTween("d", function(d){
+            const interpolate =  d3.interpolate(d.x0,d.x1);
+            function tween(t) {
+                d.x1 = interpolate(t);
+                return arc(d);
+            }
+            return tween; 
+        });
+>>>>>>> test-val0
 }
