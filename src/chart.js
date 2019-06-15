@@ -28,11 +28,8 @@ const draw = (filterObj) => {
 
     // const data = getUniverse(filterObj.getData());
 
-<<<<<<< HEAD
-=======
     const data = getData(customDCData, customMarvelData, filterHash);
 
->>>>>>> test-val0
     // d3.hiearchy converts our node like obj into d3 hiearchy object
     // sum goes through each node and sums it up
 
@@ -77,20 +74,13 @@ const draw = (filterObj) => {
 
 
     d3.selectAll(".universe").on("change", function(d,i) {
-<<<<<<< HEAD
-        filterObj.chooseUniverse(this.value);
-=======
         filterHash.universe = this.value;
         // filterObj.chooseUniverse(this.value);
->>>>>>> test-val0
         updateChart();
     });
 
     d3.selectAll(".select").on("change", function(d,i){
-<<<<<<< HEAD
-=======
         filterHash[this.name] = this.value;
->>>>>>> test-val0
         filterObj.alterFilter(this.name, this.value);
         updateChart();
     });
@@ -112,14 +102,10 @@ const updateChart = () => {
 
     newDoughnut.exit().remove();
 
-<<<<<<< HEAD
-    newDoughnut.enter().merge(newDoughnut).append("path")
-=======
     d3.selectAll("title").remove();
 
 
     d3.selectAll("path").enter().merge(newDoughnut)
->>>>>>> test-val0
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
         .attr("d", arc)
         .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
@@ -135,11 +121,6 @@ const updateChart = () => {
             }
         });
 
-<<<<<<< HEAD
-    
-
-    newDoughnut.selectAll("path").transition().duration(500).attr("d", arc);
-=======
 
     d3.selectAll("path")
         .transition()
@@ -152,5 +133,4 @@ const updateChart = () => {
             }
             return tween; 
         });
->>>>>>> test-val0
 }
