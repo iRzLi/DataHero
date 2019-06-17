@@ -21,65 +21,72 @@
     <script src="./src/filter.js"></script>
     
     <script src="./src/data_hero.js"></script>
-
+    <script src="https://kit.fontawesome.com/8b34666539.js"></script>
     <script src="./src/build_data.js"></script>
-    
     <title>DataHero</title>
   </head>
   <body>
-    <div>
-    <section class="selectors">
-      <!-- <div>
-        <label><input class="universe" type="radio" name="universe" value="both" checked /> Both Universes</label>
-        <label><input class="universe"  type="radio" name="universe" value="dc" /> DC Universe</label>
-        <label><input class="universe"  type="radio" name="universe" value="marvel" /> Marvel Universe</label>
-      </div> -->
-      <div class="options">
-        <div>
-          <span>Universe:</span>
-          <select class="select" name="universe">
-            <option value="both">Both</option>
-            <option value="dc">DC</option>
-            <option value="marvel">Marvel</option>
-          </select>
+    <div id="bodyDiv">
+      <div class="icons">
+        <a href="https://github.com/iRzLi/DataHero"><i class="fab fa-github"></i></a>
+
+      </div>
+  <div>
+      <section class="selectors">
+        <!-- <div>
+          <label><input class="universe" type="radio" name="universe" value="both" checked /> Both Universes</label>
+          <label><input class="universe"  type="radio" name="universe" value="dc" /> DC Universe</label>
+          <label><input class="universe"  type="radio" name="universe" value="marvel" /> Marvel Universe</label>
+        </div> -->
+        <div class="options">
+          <div>
+            <span>Universe:</span>
+            <select class="select" name="universe">
+              <option value="both">Both</option>
+              <option value="dc">DC</option>
+              <option value="marvel">Marvel</option>
+            </select>
+          </div>
+          <div>
+          <span>Sex: </span>
+        <select class="select" name="SEX">
+          <option value="all">All</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="unknown">???</option>
+        </select>
+  </div>
+  <div><span>Alignment:</span>
+        <select class="select" name="ALIGN">
+          <option value="all">All</option>
+          <option value="good">Good</option>
+          <option value="evil">Bad</option>
+          <option value="neutral">Neutral</option>
+          <option value="unknown">???</option>
+        </select></div>
+  <div>
+    <span>Status:</span>
+        <select class="select" name="ALIVE">
+          <option value="all">Either</option>
+          <option value="living">Living</option>
+          <option value="deceased">Deceased</option>
+          <!-- <option value="unknown">?? Status</option> -->
+        </select></div>
         </div>
-        <div>
-        <span>Sex: </span>
-      <select class="select" name="SEX">
-        <option value="all">All</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="unknown">???</option>
-      </select>
-</div>
-<div><span>Alignment:</span>
-      <select class="select" name="ALIGN">
-        <option value="all">All</option>
-        <option value="good">Good</option>
-        <option value="evil">Bad</option>
-        <option value="neutral">Neutral</option>
-        <option value="unknown">???</option>
-      </select></div>
-<div>
-  <span>Status:</span>
-      <select class="select" name="ALIVE">
-        <option value="all">Either</option>
-        <option value="living">Living</option>
-        <option value="deceased">Deceased</option>
-        <!-- <option value="unknown">?? Status</option> -->
-      </select></div>
+
+      </section>
+
+        <svg class="svg"></svg>
       </div>
 
-    </section>
+      <ul class="logo">
+        <li>Comicbook</li>
+        <li> Characters</li>
+        <li>Post Y2K</li>
+      </ul>
 
-      <svg class="svg"></svg>
     </div>
-
-    <ul class="logo">
-      <li>Comicbook</li>
-      <li> Characters</li>
-      <li>Post Y2K</li>
-    </ul>
+    
 
 
   </body>

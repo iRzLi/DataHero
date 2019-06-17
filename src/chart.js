@@ -22,9 +22,9 @@ const arc = d3.arc()
     .innerRadius(function (d) { return d.y0 })
     .outerRadius(function (d) { return d.y1 });
 
+// const draw = (filterObj) => {
 
-
-const draw = (filterObj) => {
+const draw = () => {
 
     // const data = getUniverse(filterObj.getData());
 
@@ -81,7 +81,7 @@ const draw = (filterObj) => {
 
     d3.selectAll(".select").on("change", function(d,i){
         filterHash[this.name] = this.value;
-        filterObj.alterFilter(this.name, this.value);
+        // filterObj.alterFilter(this.name, this.value);
         updateChart();
     });
 

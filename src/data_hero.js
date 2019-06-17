@@ -28,9 +28,9 @@ const filterHash = {
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
-  draw(filterObj);
+  // draw(filterObj);
 
-  // draw();
+  draw();
 
 });
 
