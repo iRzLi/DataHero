@@ -124,7 +124,7 @@ const updateChart = () => {
 
     d3.selectAll("path")
         .transition()
-        .duration(1000)
+        .duration(2000)
         .attrTween("d", function(d){
             const interpolate =  d3.interpolate(d.x0,d.x1);
             function tween(t) {
