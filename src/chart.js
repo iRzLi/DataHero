@@ -39,11 +39,13 @@ const draw = () => {
 
     partition(root);
 
+    getNames(root);
 
-    g = d3.select("svg")
+
+    g = d3.select("#chart")
         .attr("width", width)
         .attr("height", height)
-        .append("g") 
+        .append("g")
         .attr("transform", `translate(${width / 2},${width / 2})`);
 
 
@@ -66,6 +68,38 @@ const draw = () => {
             }
         });
 
+    uNames = getuniqueNames(names);
+    uNames.pop();
+    // uNames.shift();
+    // uNames.unshift(uNames.pop());
+    uNames = uNames.reverse();
+
+
+    // uNames = ["DC", "Marvel", "Male", "Female", "Unkown Sex", 
+    //     "Good","Bad", "Neutral", "Unknown Alignment",
+    //     "Living", "Deceased", "Unknown Status"];
+
+
+    let translatex = 0;
+    // translatey = 20;
+    const gs = d3.select("#legend")
+    .attr("width", 200)
+    .attr("height", 600)
+    .selectAll("g.name")
+    .data(uNames).enter()
+    .append("g")
+    .attr("class", "name");
+
+    d3.selectAll("g.name")
+        .attr("transform", function (d) {
+            return `translate(0,${translatex += 20})`;
+        });
+
+    gs.append("text")
+        .style("fill", function(d){
+            return color(d);
+        })
+        .text(String)
 
     
     g.selectAll("path").append("text").attr("dy", ".35em")
@@ -133,4 +167,9 @@ const updateChart = () => {
             }
             return tween; 
         });
+}
+
+
+const legend = () => {
+
 }

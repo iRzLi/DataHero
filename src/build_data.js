@@ -196,10 +196,10 @@ const getStatusData = (dataArr, hasValue, filterHashObj) => {
         name: "Deceased",
         children: [],
     });
-    statusData.push({
-        name: "Unknown Status",
-        children: [],
-    });
+    // statusData.push({
+    //     name: "Unknown Status",
+    //     children: [],
+    // });
 
     if (hasValue &&
         (filterHashObj.ALIVE === "all" ||
@@ -219,14 +219,14 @@ const getStatusData = (dataArr, hasValue, filterHashObj) => {
         statusData[1].children = getYearData(newDataArr[1], false);
     }
 
-    if (hasValue &&
-        (filterHashObj.ALIVE === "all" ||
-            filterHashObj.ALIVE === "")) {
-        statusData[2].children = getYearData(newDataArr[2], true);
-    }
-    else {
-        statusData[2].children = getYearData(newDataArr[2], false);
-    }
+    // if (hasValue &&
+    //     (filterHashObj.ALIVE === "all" ||
+    //         filterHashObj.ALIVE === "")) {
+    //     statusData[2].children = getYearData(newDataArr[2], true);
+    // }
+    // else {
+    //     statusData[2].children = getYearData(newDataArr[2], false);
+    // }
 
     return statusData;
 }
