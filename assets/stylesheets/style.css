@@ -1,9 +1,13 @@
+
 #bodyDiv {
+    margin-left: 50px;
+    margin-top: 15px;
     font-family: 'Bree Serif', sans-serif;
     position: relative;
-    min-width: 1000px;
-    max-width: 1000px;
+    min-width: 1080px;
+    max-width: 1080px;
     color: #bebad9;
+    margin: 0px, auto;
 }
 
 .selectors {
@@ -43,8 +47,8 @@
 
 .svg {
     position: absolute;
-    left: 60px;
-    top: 20px;
+    left: 80px;
+    top: 0px;
 }
 
 .logo{
@@ -52,8 +56,8 @@
     text-decoration: none;
     list-style-type: none;
     font-size: 14px;
-    left:386px;
-    top:378px;
+    left:406px;
+    top:358px;
 }
 
 .icons {
