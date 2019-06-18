@@ -18,7 +18,7 @@ marvelData.forEach(character => {
 })
 // const filterObj = new filter(dcData, marvelData);
 
-const filterObj = new filter(customDCData, customMarvelData);
+// const filterObj = new filter(customDCData, customMarvelData);
 
 const filterHash = { 
   universe: "both",
@@ -35,29 +35,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
   // uNames = getuniqueNames(names);
 
 
-
-
 });
 
-const names = [];
-
-let uNames = null;
-
-function getNames(node) {
-  if (node.children) {
-    node.children.forEach(function (childNode) { getNames(childNode); });
-      if (node.data.type !== "year") {
-        names.push(node.data.name);
-      }
-  }
-}
-
-function getuniqueNames(namesArr) {
-  const uNames = []
-  namesArr.forEach((name, i) => {
-    if (namesArr.indexOf(name) === i) {
-      uNames.push(name);
-    }
-  });
-  return uNames;
-}
