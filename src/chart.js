@@ -46,27 +46,42 @@ const draw = () => {
         .attr("width", width)
         .attr("height", height)
         .append("g")
+        .attr("class", "chartG")
         .attr("transform", `translate(${width / 2},${width / 2})`);
 
 
     g.selectAll("path")
         .data(root.descendants().filter(d => d.depth))
         .enter().append("path")
+        .attr("class", "pathNode")
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
         .attr("d", arc)
         .style('stroke', '#FFFFFF')
         .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
-        .append("title")
         .text(d => {
             if (d.data.type === "name") {
                 let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
                 let name = labelString[labelString.length - 1];
-                return `${labelString.slice(1, labelString.length - 1).join("/")}\n${name} `;
+                return `${labelString.slice(1, labelString.length - 1).join(" / ")} - \n${name} `;
             } else {
                 let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
-                return `${labelString.slice(1).join("/")}\n${format(d.value)} Character(s)`;
+                return `${labelString.slice(1).join(" / ")} - \n ${format(d.value)} Character(s)`;
             }
         });
+
+
+    const chartG = document.getElementsByClassName("chartG")[0];
+    chartG.addEventListener("mouseover", e=>{
+        const tt = document.getElementById("tooltip");
+        tt.innerHTML = e.target.innerHTML.split("<text")[0];
+        tt.style.display= "block";
+    })
+    chartG.addEventListener("mouseleave", e => {
+        const tt = document.getElementById("tooltip");
+        tt.innerHTML = "";
+        tt.style.display = "none";
+    })
+
 
     uNames = getuniqueNames(names);
     uNames.pop();
@@ -143,15 +158,14 @@ const updateChart = () => {
         .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
         .attr("d", arc)
         .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
-        .append("title")
         .text(d => {
             if (d.data.type === "name") {
                 let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
-                let name = labelString[labelString.length-1];
-                return `${labelString.slice(1, labelString.length - 1).join("/")}\n${name} `;
+                let name = labelString[labelString.length - 1];
+                return `${labelString.slice(1, labelString.length - 1).join(" / ")} - \n${name} `;
             } else {
                 let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");
-                return `${labelString.slice(1).join("/")}\n${format(d.value)} Character(s)`;
+                return `${labelString.slice(1).join(" / ")} - \n ${format(d.value)} Character(s)`;
             }
         });
 

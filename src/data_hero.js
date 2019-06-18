@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
   // uNames = getuniqueNames(names);
 
-
+  document.onmousemove = e => {
+    document.getElementById("tooltip").style.left = e.pageX+10 +"px";
+    document.getElementById("tooltip").style.top = e.pageY-30 + "px";
+  }
 });
 
