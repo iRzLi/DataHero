@@ -71,9 +71,12 @@ const draw = () => {
 
 
     const chartG = document.getElementsByClassName("chartG")[0];
+    
+    
     chartG.addEventListener("mouseover", e=>{
         const tt = document.getElementById("tooltip");
-        tt.innerHTML = e.target.innerHTML.split("<text")[0];
+        let splitstring = e.target.innerHTML.split("<text")[0];
+        tt.innerHTML = splitstring.split("-")[0] + "<br>" + splitstring.split("-")[1];
         tt.style.display= "block";
     })
     chartG.addEventListener("mouseleave", e => {

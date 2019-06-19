@@ -85,7 +85,8 @@ text {
 }
 
 #tooltip {
-    min-width: 160px;
+    min-width: 120px;
+    /* min-height: 3rem; */
     position: absolute;
     z-index: 10;
     background-color: rgba(0,0,0,.9);
