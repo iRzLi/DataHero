@@ -87,7 +87,7 @@ const draw = () => {
 
 
     uNames = getuniqueNames(names);
-    uNames.pop();
+    // uNames.pop();
     // uNames.shift();
     // uNames.unshift(uNames.pop());
     uNames = uNames.reverse();
@@ -117,7 +117,9 @@ const draw = () => {
         .style("fill", function(d){
             return color(d);
         })
-        .text(String)
+        .text(function(d){
+            return d +" : "+ hashData[d];
+        });
 
     
     g.selectAll("path").append("text").attr("dy", ".35em")

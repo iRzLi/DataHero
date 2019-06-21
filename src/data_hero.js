@@ -16,6 +16,8 @@ marvelData.forEach(character => {
     customMarvelData.push(character);
   }
 })
+
+
 // const filterObj = new filter(dcData, marvelData);
 
 // const filterObj = new filter(customDCData, customMarvelData);
@@ -28,11 +30,8 @@ const filterHash = {
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
-  // draw(filterObj);
 
   draw();
-
-  // uNames = getuniqueNames(names);
 
   document.onmousemove = e => {
     document.getElementById("tooltip").style.left = e.pageX+10 +"px";

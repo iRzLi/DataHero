@@ -4,8 +4,8 @@
     margin-top: 15px;
     font-family: 'Bree Serif', sans-serif;
     position: relative;
-    min-width: 1100px;
-    max-width: 1100px;
+    min-width: 1150px;
+    max-width: 1150px;
     color: #bebad9;
     margin: 0px, auto;
 }
@@ -41,7 +41,7 @@
 
 .svg {
     position: absolute;
-    left: 140px;
+    left: 160px;
     top: 0px;
 }
 
@@ -50,7 +50,7 @@
     text-decoration: none;
     list-style-type: none;
     font-size: 14px;
-    left:466px;
+    left:486px;
     top:358px;
 }
 
@@ -100,3 +100,11 @@ text {
 #chart {
     z-index: 5;
 }
+
+#instructions {
+    font-size: 18px;
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+    margin-bottom: 10px;
+    position: relative;
+    right: 24px;
+}   
