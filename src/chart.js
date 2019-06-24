@@ -1,6 +1,6 @@
 
-const width = 800;
-const height = 800;
+const width = 700;
+const height = 700;
 const radius = Math.min(width, height) / 2;
 const color = d3.scaleOrdinal(d3.schemeSet3);
 const format = d3.format(",d")
