@@ -13,7 +13,6 @@ class filter{
         this.filterSex = this.filterSex.bind(this);
         this.filterAlign = this.filterAlign.bind(this);
         this.filterAlive = this.filterAlive.bind(this);
-
         this.universe = [this.filteredDC, this.filteredMarvel];
     }
 

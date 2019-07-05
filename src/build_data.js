@@ -1,5 +1,5 @@
 const getData = (dcJson, marvelJson, filterHashObj) => {
-
+    
     let rootData = {
         name: "Characters",
         children: [],
