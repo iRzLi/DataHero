@@ -42,7 +42,7 @@
 .svg {
     position: absolute;
     left: 210px;
-    top: 0px;
+    top: 30px;
 }
 
 .logo{
@@ -51,7 +51,7 @@
     list-style-type: none;
     font-size: 14px;
     left:486px;
-    top:308px;
+    top:338px;
 }
 
 .icons {
@@ -108,3 +108,10 @@ text {
     position: relative;
     right: 24px;
 }   
+
+#title {
+    position: absolute;
+    left: 420px;
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+
+}

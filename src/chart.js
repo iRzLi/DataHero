@@ -22,6 +22,12 @@ const arc = d3.arc()
     .innerRadius(function (d) { return d.y0 })
     .outerRadius(function (d) { return d.y1 });
 
+const arcHover = d3.arc()
+    .startAngle(function (d) { return d.x0*.99 })
+    .endAngle(function (d) { return d.x1*1.01 })
+    .innerRadius(function (d) { return d.y0*.99 })
+    .outerRadius(function (d) { return d.y1*1.01 });
+
 // const draw = (filterObj) => {
 
 const draw = () => {
@@ -58,6 +64,23 @@ const draw = () => {
         .attr("d", arc)
         .style('stroke', '#FFFFFF')
         .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
+        .on("mouseover", function(d){
+            // Updating z-index for a slice from Evil Closet Monkey
+            // Slices are on top of ealier slices so just create a new one
+            // https://stackoverflow.com/questions/13595175/updating-svg-element-z-index-with-d3
+            if (d.data.type !== "name"){
+                g.append("path")
+                    .attr("d", d3.select(this).attr("d"))
+                    .attr("id", "sliceHover")
+                    .style("fill", "none")
+                    .style("stroke", "#000")
+                    .style("stroke-width", 2);
+            }
+            
+        })
+        .on("mouseleave", function (d) {
+            g.select("#sliceHover").remove();
+        })
         .text(d => {
             if (d.data.type === "name") {
                 let labelString = d.ancestors().map(d => d.data.name).reverse().join("/").split("/");

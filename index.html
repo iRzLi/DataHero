@@ -1,47 +1,51 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./assets/stylesheets/style.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="./assets/stylesheets/style.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
 
 
-    <script src="./lib/d3.min.js"></script>
-    <script src="./assets/data/dc-characters.js"></script>
-    <script src="./assets/data/marvel-characters.js"></script>
-<!-- 
+  <script src="./lib/d3.min.js"></script>
+  <script src="./assets/data/dc-characters.js"></script>
+  <script src="./assets/data/marvel-characters.js"></script>
+  <!-- 
     <script src="./assets/data/dc-test.js"></script>
     <script src="./assets/data/marvel-test.js"></script> -->
 
 
-    <script src="./src/data_util.js"></script>
-    <script src="./src/chart.js"></script>
-    <script src="./src/filter.js"></script>
+  <script src="./src/data_util.js"></script>
+  <script src="./src/chart.js"></script>
+  <script src="./src/filter.js"></script>
 
-    <script src="./src/names.js"></script>
-    
-    <script src="./src/data_hero.js"></script>
-    <script src="https://kit.fontawesome.com/8b34666539.js"></script>
-    <script src="./src/build_data.js"></script>
-    <script src="./src/build_obj.js"></script>
-    
-    <title>DataHero</title>
-  </head>
-  <body>
-    <div id="bodyDiv">
-      <div class="icons">
-        <a href="https://github.com/iRzLi/DataHero"><i class="fab fa-github"></i></a>
+  <script src="./src/names.js"></script>
 
-      </div>
-  <div>
+  <script src="./src/data_hero.js"></script>
+  <script src="https://kit.fontawesome.com/8b34666539.js"></script>
+  <script src="./src/build_data.js"></script>
+  <script src="./src/build_obj.js"></script>
+
+  <title>DataHero</title>
+</head>
+
+<body>
+  <div id="bodyDiv">
+    <div class="icons">
+      <a href="https://github.com/iRzLi/DataHero"><i class="fab fa-github"></i></a>
+
+    </div>
+    <div>
       <section class="selectors">
         <!-- <div>
           <label><input class="universe" type="radio" name="universe" value="both" checked /> Both Universes</label>
           <label><input class="universe"  type="radio" name="universe" value="dc" /> DC Universe</label>
           <label><input class="universe"  type="radio" name="universe" value="marvel" /> Marvel Universe</label>
         </div> -->
+        <!-- <div id="instructions">Click here To</div>
+        <div id="instructions">Change</div> -->
         <div id="instructions">Filter Options</div>
         <div class="options">
           <div>
@@ -53,48 +57,49 @@
             </select>
           </div>
           <div>
-          <span>Sex: </span>
-        <select class="select" name="SEX">
-          <option value="all">All</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="unknown">Unknown</option>
-        </select>
-  </div>
-  <div><span>Alignment:</span>
-        <select class="select" name="ALIGN">
-          <option value="all">All</option>
-          <option value="good">Good</option>
-          <option value="evil">Bad</option>
-          <option value="neutral">Neutral</option>
-          <option value="unknown">Unknown</option>
-        </select></div>
-  <div>
-    <span>Status:</span>
-        <select class="select" name="ALIVE">
-          <option value="all">Either</option>
-          <option value="living">Living</option>
-          <option value="deceased">Deceased</option>
-          <!-- <option value="unknown">Unknown</option> -->
-        </select></div>
+            <span>Sex: </span>
+            <select class="select" name="SEX">
+              <option value="all">All</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </div>
+          <div><span>Alignment:</span>
+            <select class="select" name="ALIGN">
+              <option value="all">All</option>
+              <option value="good">Good</option>
+              <option value="evil">Bad</option>
+              <option value="neutral">Neutral</option>
+              <option value="unknown">Unknown</option>
+            </select></div>
+          <div>
+            <span>Status:</span>
+            <select class="select" name="ALIVE">
+              <option value="all">Either</option>
+              <option value="living">Living</option>
+              <option value="deceased">Deceased</option>
+              <!-- <option value="unknown">Unknown</option> -->
+            </select></div>
         </div>
 
       </section>
-
-        <svg class="svg" id="chart"></svg>
-        <svg id="legend"> </svg>
-      </div>
-
-      <ul class="logo">
-        <li>Comicbook</li>
-        <li> Characters</li>
-        <li>Post Y2K</li>
-      </ul>
-
+      <div id="title" >Comicbook Characters and Identities</div>
+      <svg class="svg" id="chart"></svg>
+      <svg id="legend"> </svg>
     </div>
-    
-    
-    <div id="tooltip"></div>
 
-  </body>
+    <ul class="logo">
+      <li>Comicbook</li>
+      <li> Characters</li>
+      <li>Post Y2K</li>
+    </ul>
+
+  </div>
+
+
+  <div id="tooltip"></div>
+
+</body>
+
 </html>
