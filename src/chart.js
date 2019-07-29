@@ -73,7 +73,7 @@ const draw = () => {
                     .attr("d", d3.select(this).attr("d"))
                     .attr("id", "sliceHover")
                     .style("fill", "none")
-                    .style("stroke", "#000")
+                    .style("stroke", "#9400D3")
                     .style("stroke-width", 2);
             }
             
