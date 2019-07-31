@@ -113,8 +113,9 @@ const draw = () => {
     // uNames.pop();
     // uNames.shift();
     // uNames.unshift(uNames.pop());
+    uNames.push("Static Data Values")
     uNames = uNames.reverse();
-
+    
 
     // uNames = ["DC", "Marvel", "Male", "Female", "Unkown Sex", 
     //     "Good","Bad", "Neutral", "Unknown Alignment",

@@ -1,4 +1,5 @@
 const hashData = {
+    "Static Data Values": "",
     "Characters": 0,
     "DC": customDCData.length,
     "Marvel": customMarvelData.length,
