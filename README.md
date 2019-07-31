@@ -4,6 +4,9 @@
 
 DataHero is a data visualization of comic book characters from both the DC and Marvel universe.
 
+[live demo](https://irzli.github.io/DataHero/)
+
+
 ![DataHero](./assets/readme/ss.png)
 
 ## MVPs
