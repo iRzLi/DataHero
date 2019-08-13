@@ -32,8 +32,6 @@ const arcHover = d3.arc()
 
 const draw = () => {
 
-    // const data = getUniverse(filterObj.getData());
-
     const data = getData(customDCData, customMarvelData, filterHash);
 
     // d3.hiearchy converts our node like obj into d3 hiearchy object
